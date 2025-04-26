@@ -1,0 +1,9 @@
+{
+  "@@locale": "ja",
+  "signIn": "サインイン",
+  "email": "メールアドレス",
+  "password": "パスワード",
+  "userInfo": "ユーザー情報",
+  "id": "ID",
+  "profile": "プロフィール"
+}
