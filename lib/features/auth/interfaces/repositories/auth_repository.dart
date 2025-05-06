@@ -1,5 +1,5 @@
-import '../../../core/interfaces/i_auth_repository.dart';
-import '../domain/user.dart';
+import '../../../../core/interfaces/i_auth_repository.dart';
+import '../../domain/entities/user.dart';
 
 class AuthRepository implements IAuthRepository {
   @override

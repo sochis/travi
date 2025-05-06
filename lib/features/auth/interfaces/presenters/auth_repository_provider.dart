@@ -1,5 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../infrastructure/auth_repository.dart';
+import '../repositories/auth_repository.dart';
 import '../../../../core/interfaces/i_auth_repository.dart';
 
 // Define a provider for the authentication repository

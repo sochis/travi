@@ -2,7 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:flutter_base/core/interfaces/i_auth_repository.dart';
-import 'package:flutter_base/features/auth/application/sign_in_use_case.dart';
+import 'package:flutter_base/features/auth/usecases/sign_in_use_case.dart';
 
 @GenerateMocks(<Type>[IAuthRepository])
 import 'sign_in_use_case_test.mocks.dart';
