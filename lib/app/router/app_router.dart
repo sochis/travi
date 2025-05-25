@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:flutter_base/features/auth/interfaces/pages/sign_in_page.dart';
+import 'package:flutter_base/features/auth/presentation/pages/sign_in_page.dart';
 import 'package:flutter_base/features/user/interfaces/pages/user_profile_page.dart';
 import 'package:flutter_base/features/auth/domain/entities/user.dart';
 

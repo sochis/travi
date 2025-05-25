@@ -1,4 +1,4 @@
-import '../../../../core/interfaces/i_auth_repository.dart';
+import '../../domain/repositories/i_auth_repository.dart';
 import '../../domain/entities/user.dart';
 
 class AuthRepository implements IAuthRepository {

@@ -1,4 +1,5 @@
-# 🧱 Flutter Clean Architecture Boilerplate  
+# 🧱 Flutter Clean Architecture Boilerplate
+
 **Microservices + Event-driven + Riverpod + Future-driven + i18n**
 
 This project is a scalable boilerplate for large Flutter apps using **Clean Architecture** principles.  
@@ -11,52 +12,52 @@ It supports **microservice-style modularization**, **event-driven logic**, **Riv
 ```plaintext
 lib
 │
-├─ app                 ← App-level setup (routing, DI, lifecycle)
-│  ├─ di               ← Dependency Injection configuration and management
-│  ├─ lifecycle        ← Application lifecycle management (e.g., app state management and settings)
-│  ├─ router           ← Routing configuration (e.g., GoRouter setup and URL patterns)
-│  └─ app.dart         ← Root App widget
+├─ app                           ← Application-wide setup
+│  ├─ di                         ← Dependency injection setup (e.g., Provider overrides)
+│  ├─ lifecycle                  ← App lifecycle management (optional; e.g., state persistence)
+│  ├─ router                     ← Routing configuration (GoRouter or similar)
+│  └─ app.dart                   ← Root App widget (runApp entry point)
 │
-├─ config              ← Application settings (e.g., environment configuration files and related settings)
+├─ config                        ← Environment configurations and global settings
 │
-├─ core                ← Core architecture foundation (pure & abstract)
-│  ├─ base             ← Base classes (common functionality and foundational code)
-│  ├─ events           ← Application event management (e.g., stream and notification handling)
-│  ├─ exceptions       ← Error handling (e.g., exception classes and error management)
-│  ├─ interfaces       ← Application interfaces (e.g., repository interfaces)
-│  ├─ network          ← Network communication (e.g., API clients and network services)
-│  └─ utils            ← Utility functions (e.g., helpful functions and common tools)
+├─ core                          ← Pure and abstract foundational layers
+│  ├─ base                       ← Base classes, wrappers, and common generics (e.g., Result, BaseUseCase)
+│  ├─ exceptions                 ← Application-level exception classes and error definitions
+│  ├─ network
+│  │  └─ interceptors            ← HTTP interceptors (e.g., Dio interceptors for auth, logging)
+│  └─ utils                      ← Generic utility functions (e.g., formatters, validators)
 │
-├─ features
-│  ├─ auth             ← Reusable UI and helpers across features
-│  │  ├─ domain        ← Domain Layer (business rules)
-│  │  │  ├─ entities      ← Domain models (e.g., User, Credentials)
-│  │  │  ├─ services      ← Domain services (e.g., PasswordPolicyChecker)
-│  │  │  └─ value_objects ← Value Objects (optional, e.g., EmailAddress)
-│  │  ├─ interfaces    ← Interfaces (e.g., Controllers and Presenters)
-│  │  │  ├─ controllers   ← Presentation logic (Controller)
-│  │  │  ├─ pages         ← UI (Flutter screens)
-│  │  │  ├─ presenters    ← Presenter (UI logic, manages state notifier)
-│  │  │  ├─ providers     ← Riverpod providers (e.g., controller, presenter providers)
-│  │  │  ├─ repositories  ← Interface adapters to data sources (implement domain repositories)
-│  │  │  ├─ states        ← View states (e.g., SignInState, registration form state)
-│  │  │  └─ widgets       ← Reusable widgets specific to auth (e.g., login form, password field)
-│  │  └─ usecases       ← Application use cases (business logic)
+├─ features                      ← Domain-driven feature modules
+│  ├─ auth
+│  │  ├─ application
+│  │  │  └─ usecases             ← Application-level business logic (auth workflows, session handling)
+│  │  ├─ domain
+│  │  │  ├─ entities             ← Domain models (e.g., User, Credentials)
+│  │  │  ├─ repositories         ← Abstract repositories (e.g., AuthRepository interface)
+│  │  │  └─ services             ← Domain services (e.g., validation logic)
+│  │  ├─ infrastructure
+│  │  │  └─ repositories         ← Concrete implementations (e.g., APIAuthRepository)
+│  │  └─ presentation
+│  │      ├─ controllers         ← State logic (e.g., StateNotifiers)
+│  │      ├─ pages               ← Screens and pages (e.g., SignInPage)
+│  │      ├─ presenters          ← Optional: UI logic managers (for MVVM-like structure)
+│  │      ├─ providers           ← Riverpod providers (e.g., controller and use case providers)
+│  │      ├─ states              ← UI state classes (e.g., SignInState)
+│  │      └─ widgets             ← Feature-specific reusable widgets (e.g., password field)
 │  └─ user
-│      └─ interfaces
-│          └─ pages      ← User-related UI (screens)
+│      └─ presentation
+│          └─ pages              ← User-related screens (e.g., UserProfilePage)
 │
-├─ shared               ← Each business domain (microservice-like modules)
-│   ├─ constants        ← Constants (e.g., error messages and configuration values)
-│   ├─ extensions       ← Extension methods (e.g., adding functionality to types and classes)
-│   ├─ helpers          ← Helper functions (e.g., useful logic)
-│   ├─ i18n
-│   │  └─ l10n          ← Localization (multi-language support)
-│   ├─ services         ← Interfaces for external services (e.g., authentication services, storage)
-│   ├─ themes           ← Application themes (e.g., style and color settings)
-│   └─ widgets          ← Reusable widgets (UI components)
+├─ shared                        ← Globally shared resources and utilities
+│  ├─ constants                  ← Global constants (e.g., error messages, keys)
+│  ├─ extensions                 ← Extension methods for Dart and Flutter types
+│  ├─ helpers                    ← Helper functions (e.g., input validation, formatting)
+│  ├─ i18n
+│  │  └─ l10n                    ← Localization files and generated output
+│  ├─ themes                     ← Application theming (colors, typography)
+│  └─ widgets                    ← Reusable shared UI components (e.g., buttons, cards)
 │
-└─ main.dart            ← App entry point
+└─ main.dart                     ← Main entry point that runs the app
 
 ```
 

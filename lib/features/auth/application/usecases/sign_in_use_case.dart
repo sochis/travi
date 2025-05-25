@@ -1,5 +1,5 @@
-import '../../../core/base/base_use_case.dart';
-import '../../../core/interfaces/i_auth_repository.dart';
+import '../../../../core/base/base_use_case.dart';
+import '../../domain/repositories/i_auth_repository.dart';
 
 class SignInUseCase extends UseCase<void, SignInParams> {
   final IAuthRepository repository;

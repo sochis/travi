@@ -1,8 +1,8 @@
-import 'package:flutter_base/features/auth/interfaces/controllers/sign_in_controller.dart';
-import 'package:flutter_base/features/auth/interfaces/presenters/sign_in_presenter.dart';
-import 'package:flutter_base/features/auth/interfaces/providers/sign_in_use_case_provider.dart';
-import 'package:flutter_base/features/auth/interfaces/states/sign_in_state.dart';
-import 'package:flutter_base/features/auth/usecases/sign_in_use_case.dart';
+import 'package:flutter_base/features/auth/presentation/controllers/sign_in_controller.dart';
+import 'package:flutter_base/features/auth/presentation/presenters/sign_in_presenter.dart';
+import 'package:flutter_base/features/auth/presentation/providers/sign_in_use_case_provider.dart';
+import 'package:flutter_base/features/auth/presentation/states/sign_in_state.dart';
+import 'package:flutter_base/features/auth/application/usecases/sign_in_use_case.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final StateNotifierProvider<SignInPresenter, SignInState>

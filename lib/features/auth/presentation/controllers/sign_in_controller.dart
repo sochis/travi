@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_base/features/auth/domain/entities/user.dart';
-import 'package:flutter_base/features/auth/interfaces/presenters/sign_in_presenter.dart';
-import 'package:flutter_base/features/auth/usecases/sign_in_use_case.dart';
+import 'package:flutter_base/features/auth/presentation/presenters/sign_in_presenter.dart';
+import 'package:flutter_base/features/auth/application/usecases/sign_in_use_case.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 

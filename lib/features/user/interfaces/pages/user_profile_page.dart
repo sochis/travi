@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_base/features/auth/interfaces/states/sign_in_state.dart';
-import 'package:flutter_base/features/auth/interfaces/providers/sign_in_provider.dart';
+import 'package:flutter_base/features/auth/presentation/states/sign_in_state.dart';
+import 'package:flutter_base/features/auth/presentation/providers/sign_in_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../auth/domain/entities/user.dart';
 import 'package:flutter_base/shared/i18n/l10n/app_localizations.dart';
