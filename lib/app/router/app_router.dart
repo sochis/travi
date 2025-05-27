@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_base/features/map/presentation/pages/map_page.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_base/features/auth/presentation/pages/sign_in_page.dart';
-import 'package:flutter_base/features/user/interfaces/pages/user_profile_page.dart';
-import 'package:flutter_base/features/auth/domain/entities/user.dart';
 
 final GoRouter router = GoRouter(
-  initialLocation: '/sign-in',
+  // initialLocation: '/sign-in',
+  initialLocation: '/map',
   routes: <GoRoute>[
     GoRoute(
       path: '/sign-in',
@@ -13,11 +13,8 @@ final GoRouter router = GoRouter(
           (BuildContext context, GoRouterState state) => const SignInPage(),
     ),
     GoRoute(
-      path: '/profile',
-      builder: (BuildContext context, GoRouterState state) {
-        final User user = state.extra as User;
-        return UserProfilePage(user: user);
-      },
+      path: '/map',
+      builder: (BuildContext context, GoRouterState state) => const MapPage(),
     ),
   ],
 );
