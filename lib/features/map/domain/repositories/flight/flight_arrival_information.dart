@@ -1,4 +1,4 @@
-class FlightInformation {
+class FlightArrivalInformation {
   final String id;
   final String type;
   final String context;
@@ -16,7 +16,7 @@ class FlightInformation {
   final String scheduledArrivalTime;
   final String? terminal;
 
-  const FlightInformation({
+  const FlightArrivalInformation({
     required this.id,
     required this.type,
     required this.context,
@@ -35,8 +35,8 @@ class FlightInformation {
     required this.terminal,
   });
 
-  factory FlightInformation.fromJson(Map<String, dynamic> json) {
-    return FlightInformation(
+  factory FlightArrivalInformation.fromJson(Map<String, dynamic> json) {
+    return FlightArrivalInformation(
       id: json['@id'] as String,
       type: json['@type'] as String,
       context: json['@context'] as String,

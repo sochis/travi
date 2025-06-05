@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_base/features/map/domain/repositories/flight/flight_arrival_information.dart';
 import 'package:flutter_base/features/map/presentation/providers/flight_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -9,6 +10,7 @@ class MapPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(flightArrivalProvider);
     final notifier = ref.read(flightArrivalProvider.notifier);
+    final List<FlightArrivalInformation> flights = state.data ?? [];
 
     return Scaffold(
       appBar: AppBar(title: const Text('Flight Arrivals')),
@@ -18,9 +20,9 @@ class MapPage extends ConsumerWidget {
               : state.error != null
               ? Center(child: Text('Error: ${state.error}'))
               : ListView.builder(
-                itemCount: state.arrivals?.length ?? 0,
+                itemCount: flights.length,
                 itemBuilder: (context, index) {
-                  final flight = state.arrivals![index];
+                  final flight = flights[index];
                   return ListTile(
                     title: Text(flight.flightNumber[0]),
                     subtitle: Text(
@@ -30,7 +32,7 @@ class MapPage extends ConsumerWidget {
                 },
               ),
       floatingActionButton: FloatingActionButton(
-        onPressed: notifier.fetchFlights,
+        onPressed: notifier.fetch,
         child: const Icon(Icons.refresh),
       ),
     );
