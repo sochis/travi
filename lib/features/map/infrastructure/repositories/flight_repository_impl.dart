@@ -1,6 +1,7 @@
 import 'package:flutter_base/core/base/api_client_factory.dart';
 import 'package:flutter_base/core/network/api_client.dart';
 import 'package:flutter_base/core/network/api_result.dart';
+import 'package:flutter_base/core/utils/load_config.dart';
 import 'package:flutter_base/features/map/domain/repositories/flight/airport_information.dart';
 import 'package:flutter_base/features/map/domain/repositories/flight/airport_terminal_information.dart';
 import 'package:flutter_base/features/map/domain/repositories/flight/flight_arrival_information.dart';
@@ -18,10 +19,14 @@ class FlightRepositoryImpl {
     return FlightRepositoryImpl(client);
   }
 
+  Map<String, String> _buildQueryParams() {
+    return {'acl:consumerKey': ApiKeyProvider.odptApiKey};
+  }
+
   Future<ApiResult<List<AirportInformation>>> fetchAirport() {
     return _client.get<List<AirportInformation>>(
       'odpt:Airport',
-      queryParameters: {'acl:consumerKey': 'your_api_key_here'},
+      queryParameters: _buildQueryParams(),
       parser: (data) {
         final list = data as List<dynamic>;
         return list
@@ -37,7 +42,7 @@ class FlightRepositoryImpl {
   Future<ApiResult<List<AirportTerminalInformation>>> fetchAirportTerminal() {
     return _client.get<List<AirportTerminalInformation>>(
       'odpt:AirportTerminal',
-      queryParameters: {'acl:consumerKey': 'your_api_key_here'},
+      queryParameters: _buildQueryParams(),
       parser: (data) {
         final list = data as List<dynamic>;
         return list
@@ -54,7 +59,7 @@ class FlightRepositoryImpl {
   Future<ApiResult<List<FlightArrivalInformation>>> fetchFlightArrivals() {
     return _client.get<List<FlightArrivalInformation>>(
       'odpt:FlightInformationArrival',
-      queryParameters: {'acl:consumerKey': 'your_api_key_here'},
+      queryParameters: _buildQueryParams(),
       parser: (data) {
         final list = data as List<dynamic>;
         return list
@@ -71,7 +76,7 @@ class FlightRepositoryImpl {
   Future<ApiResult<List<FlightDepartureInformation>>> fetchFlightDeparture() {
     return _client.get<List<FlightDepartureInformation>>(
       'odpt:FlightInformationDeparture',
-      queryParameters: {'acl:consumerKey': 'your_api_key_here'},
+      queryParameters: _buildQueryParams(),
       parser: (data) {
         final list = data as List<dynamic>;
         return list
@@ -88,7 +93,7 @@ class FlightRepositoryImpl {
   Future<ApiResult<List<FlightSchedule>>> fetchFlightSchedule() {
     return _client.get<List<FlightSchedule>>(
       'odpt:FlightSchedule',
-      queryParameters: {'acl:consumerKey': 'your_api_key_here'},
+      queryParameters: _buildQueryParams(),
       parser: (data) {
         final list = data as List<dynamic>;
         return list
@@ -103,7 +108,7 @@ class FlightRepositoryImpl {
   Future<ApiResult<List<FlightStatus>>> fetchFlightStatus() {
     return _client.get<List<FlightStatus>>(
       'odpt:FlightStatus',
-      queryParameters: {'acl:consumerKey': 'your_api_key_here'},
+      queryParameters: _buildQueryParams(),
       parser: (data) {
         final list = data as List<dynamic>;
         return list
