@@ -19,16 +19,17 @@ class FlightScheduleObject {
 
   factory FlightScheduleObject.fromJson(Map<String, dynamic> json) {
     return FlightScheduleObject(
-      airline: json['odpt:airline'] as String,
-      isValidTo: json['odpt:isValidTo'] as String,
-      isValidFrom: json['odpt:isValidFrom'] as String,
-      originTime: json['odpt:originTime'] as String,
-      destinationTime: json['odpt:destinationTime'] as String,
-      aircraftType: json['odpt:aircraftType'] as String,
+      airline: json['odpt:airline'] as String? ?? '',
+      isValidTo: json['odpt:isValidTo'] as String? ?? '',
+      isValidFrom: json['odpt:isValidFrom'] as String? ?? '',
+      originTime: json['odpt:originTime'] as String? ?? '',
+      destinationTime: json['odpt:destinationTime'] as String? ?? '',
+      aircraftType: json['odpt:aircraftType'] as String? ?? '',
       flightNumber:
-          (json['odpt:flightNumber'] as List<dynamic>)
-              .map((e) => e as String)
-              .toList(),
+          (json['odpt:flightNumber'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          [],
     );
   }
 }
@@ -60,21 +61,22 @@ class FlightSchedule {
 
   factory FlightSchedule.fromJson(Map<String, dynamic> json) {
     return FlightSchedule(
-      id: json['@id'] as String,
-      type: json['@type'] as String,
-      context: json['@context'] as String,
-      date: json['dc:date'] as String,
-      sameAs: json['owl:sameAs'] as String,
-      calendar: json['odpt:calendar'] as String,
-      operator: json['odpt:operator'] as String,
-      originAirport: json['odpt:originAirport'] as String,
-      destinationAirport: json['odpt:destinationAirport'] as String,
+      id: json['@id'] as String? ?? '',
+      type: json['@type'] as String? ?? '',
+      context: json['@context'] as String? ?? '',
+      date: json['dc:date'] as String? ?? '',
+      sameAs: json['owl:sameAs'] as String? ?? '',
+      calendar: json['odpt:calendar'] as String? ?? '',
+      operator: json['odpt:operator'] as String? ?? '',
+      originAirport: json['odpt:originAirport'] as String? ?? '',
+      destinationAirport: json['odpt:destinationAirport'] as String? ?? '',
       flightScheduleObjects:
-          (json['odpt:flightScheduleObject'] as List<dynamic>)
-              .map(
+          (json['odpt:flightScheduleObject'] as List<dynamic>?)
+              ?.map(
                 (e) => FlightScheduleObject.fromJson(e as Map<String, dynamic>),
               )
-              .toList(),
+              .toList() ??
+          [],
     );
   }
 }

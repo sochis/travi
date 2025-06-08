@@ -29,21 +29,22 @@ class StationTimetable {
 
   factory StationTimetable.fromJson(Map<String, dynamic> json) {
     return StationTimetable(
-      id: json['@id'] as String,
-      type: json['@type'] as String,
-      context: json['@context'] as String,
-      date: json['dc:date'] as String,
-      issued: json['dct:issued'] as String,
-      sameAs: json['owl:sameAs'] as String,
-      railway: json['odpt:railway'] as String,
-      station: json['odpt:station'] as String,
-      calendar: json['odpt:calendar'] as String,
-      operatorName: json['odpt:operator'] as String,
-      railDirection: json['odpt:railDirection'] as String,
+      id: json['@id'] as String? ?? '',
+      type: json['@type'] as String? ?? '',
+      context: json['@context'] as String? ?? '',
+      date: json['dc:date'] as String? ?? '',
+      issued: json['dct:issued'] as String? ?? '',
+      sameAs: json['owl:sameAs'] as String? ?? '',
+      railway: json['odpt:railway'] as String? ?? '',
+      station: json['odpt:station'] as String? ?? '',
+      calendar: json['odpt:calendar'] as String? ?? '',
+      operatorName: json['odpt:operator'] as String? ?? '',
+      railDirection: json['odpt:railDirection'] as String? ?? '',
       timetableObjects:
-          (json['odpt:stationTimetableObject'] as List)
-              .map((e) => StationTimetableObject.fromJson(e))
-              .toList(),
+          (json['odpt:stationTimetableObject'] as List?)
+              ?.map((e) => StationTimetableObject.fromJson(e))
+              .toList() ??
+          [],
     );
   }
 }
@@ -65,11 +66,15 @@ class StationTimetableObject {
 
   factory StationTimetableObject.fromJson(Map<String, dynamic> json) {
     return StationTimetableObject(
-      train: json['odpt:train'] as String,
-      trainType: json['odpt:trainType'] as String,
-      trainNumber: json['odpt:trainNumber'] as String,
-      departureTime: json['odpt:departureTime'] as String,
-      destinationStation: List<String>.from(json['odpt:destinationStation']),
+      train: json['odpt:train'] as String? ?? '',
+      trainType: json['odpt:trainType'] as String? ?? '',
+      trainNumber: json['odpt:trainNumber'] as String? ?? '',
+      departureTime: json['odpt:departureTime'] as String? ?? '',
+      destinationStation:
+          (json['odpt:destinationStation'] as List?)
+              ?.map((e) => e as String)
+              .toList() ??
+          [],
     );
   }
 }

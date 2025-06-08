@@ -21,16 +21,17 @@ class RailDirection {
 
   factory RailDirection.fromJson(Map<String, dynamic> json) {
     return RailDirection(
-      id: json['@id'] as String,
-      type: json['@type'] as String,
-      context: json['@context'] as String,
-      date: json['dc:date'] as String,
-      title: json['dc:title'] as String,
-      sameAs: json['owl:sameAs'] as String,
-      operatorName: json['odpt:operator'] as String,
-      railDirectionTitle: Map<String, String>.from(
-        json['odpt:railDirectionTitle'],
-      ),
+      id: json['@id'] as String? ?? '',
+      type: json['@type'] as String? ?? '',
+      context: json['@context'] as String? ?? '',
+      date: json['dc:date'] as String? ?? '',
+      title: json['dc:title'] as String? ?? '',
+      sameAs: json['owl:sameAs'] as String? ?? '',
+      operatorName: json['odpt:operator'] as String? ?? '',
+      railDirectionTitle:
+          (json['odpt:railDirectionTitle'] as Map?) != null
+              ? Map<String, String>.from(json['odpt:railDirectionTitle'] as Map)
+              : {},
     );
   }
 }

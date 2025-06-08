@@ -19,13 +19,15 @@ class Calendar {
 
   factory Calendar.fromJson(Map<String, dynamic> json) {
     return Calendar(
-      id: json['@id'] as String,
-      type: json['@type'] as String,
-      context: json['@context'] as String,
-      date: json['dc:date'] as String,
-      title: json['dc:title'] as String,
-      sameAs: json['owl:sameAs'] as String,
-      calendarTitle: CalendarTitle.fromJson(json['odpt:calendarTitle']),
+      id: json['@id'] as String? ?? '',
+      type: json['@type'] as String? ?? '',
+      context: json['@context'] as String? ?? '',
+      date: json['dc:date'] as String? ?? '',
+      title: json['dc:title'] as String? ?? '',
+      sameAs: json['owl:sameAs'] as String? ?? '',
+      calendarTitle: CalendarTitle.fromJson(
+        json['odpt:calendarTitle'] as Map<String, dynamic>? ?? {},
+      ),
     );
   }
 }
@@ -37,6 +39,9 @@ class CalendarTitle {
   CalendarTitle({required this.en, required this.ja});
 
   factory CalendarTitle.fromJson(Map<String, dynamic> json) {
-    return CalendarTitle(en: json['en'] as String, ja: json['ja'] as String);
+    return CalendarTitle(
+      en: json['en'] as String? ?? '',
+      ja: json['ja'] as String? ?? '',
+    );
   }
 }

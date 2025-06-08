@@ -37,24 +37,25 @@ class FlightArrivalInformation {
 
   factory FlightArrivalInformation.fromJson(Map<String, dynamic> json) {
     return FlightArrivalInformation(
-      id: json['@id'] as String,
-      type: json['@type'] as String,
-      context: json['@context'] as String,
-      date: json['dc:date'] as String,
-      valid: json['dct:valid'] as String,
-      sameAs: json['owl:sameAs'] as String,
-      airline: json['odpt:airline'] as String,
-      operator: json['odpt:operator'] as String,
+      id: json['@id'] as String? ?? '',
+      type: json['@type'] as String? ?? '',
+      context: json['@context'] as String? ?? '',
+      date: json['dc:date'] as String? ?? '',
+      valid: json['dct:valid'] as String? ?? '',
+      sameAs: json['owl:sameAs'] as String? ?? '',
+      airline: json['odpt:airline'] as String? ?? '',
+      operator: json['odpt:operator'] as String? ?? '',
       aircraftType: json['odpt:aircraftType'] as String?,
       flightNumber:
-          (json['odpt:flightNumber'] as List<dynamic>)
-              .map((e) => e as String)
-              .toList(),
+          (json['odpt:flightNumber'] as List?)
+              ?.map((e) => e as String)
+              .toList() ??
+          [],
       flightStatus: json['odpt:flightStatus'] as String?,
-      originAirport: json['odpt:originAirport'] as String,
-      arrivalAirport: json['odpt:arrivalAirport'] as String,
+      originAirport: json['odpt:originAirport'] as String? ?? '',
+      arrivalAirport: json['odpt:arrivalAirport'] as String? ?? '',
       actualArrivalTime: json['odpt:actualArrivalTime'] as String?,
-      scheduledArrivalTime: json['odpt:scheduledArrivalTime'] as String,
+      scheduledArrivalTime: json['odpt:scheduledArrivalTime'] as String? ?? '',
       terminal: json['odpt:arrivalAirportTerminal'] as String?,
     );
   }

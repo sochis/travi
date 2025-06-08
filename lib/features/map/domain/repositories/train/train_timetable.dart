@@ -37,33 +37,36 @@ class TrainTimetable {
 
   factory TrainTimetable.fromJson(Map<String, dynamic> json) {
     return TrainTimetable(
-      id: json['@id'] as String,
-      type: json['@type'] as String,
-      context: json['@context'] as String,
-      date: json['dc:date'] as String,
-      issued: json['dct:issued'] as String,
-      train: json['odpt:train'] as String,
-      sameAs: json['owl:sameAs'] as String,
-      railway: json['odpt:railway'] as String,
-      calendar: json['odpt:calendar'] as String,
-      operatorName: json['odpt:operator'] as String,
-      trainType: json['odpt:trainType'] as String,
-      trainNumber: json['odpt:trainNumber'] as String,
+      id: json['@id'] as String? ?? '',
+      type: json['@type'] as String? ?? '',
+      context: json['@context'] as String? ?? '',
+      date: json['dc:date'] as String? ?? '',
+      issued: json['dct:issued'] as String? ?? '',
+      train: json['odpt:train'] as String? ?? '',
+      sameAs: json['owl:sameAs'] as String? ?? '',
+      railway: json['odpt:railway'] as String? ?? '',
+      calendar: json['odpt:calendar'] as String? ?? '',
+      operatorName: json['odpt:operator'] as String? ?? '',
+      trainType: json['odpt:trainType'] as String? ?? '',
+      trainNumber: json['odpt:trainNumber'] as String? ?? '',
       originStation:
-          (json['odpt:originStation'] as List<dynamic>)
-              .map((e) => e as String)
-              .toList(),
-      railDirection: json['odpt:railDirection'] as String,
+          (json['odpt:originStation'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          [],
+      railDirection: json['odpt:railDirection'] as String? ?? '',
       destinationStation:
-          (json['odpt:destinationStation'] as List<dynamic>)
-              .map((e) => e as String)
-              .toList(),
+          (json['odpt:destinationStation'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          [],
       trainTimetableObject:
-          (json['odpt:trainTimetableObject'] as List<dynamic>)
-              .map(
+          (json['odpt:trainTimetableObject'] as List<dynamic>?)
+              ?.map(
                 (e) => TrainTimetableObject.fromJson(e as Map<String, dynamic>),
               )
-              .toList(),
+              .toList() ??
+          [],
     );
   }
 }

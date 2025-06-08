@@ -19,13 +19,15 @@ class Operator {
 
   factory Operator.fromJson(Map<String, dynamic> json) {
     return Operator(
-      id: json['@id'] as String,
-      type: json['@type'] as String,
-      context: json['@context'] as String,
-      date: json['dc:date'] as String,
-      title: json['dc:title'] as String,
-      sameAs: json['owl:sameAs'] as String,
-      operatorTitle: OperatorTitle.fromJson(json['odpt:operatorTitle']),
+      id: json['@id'] as String? ?? '',
+      type: json['@type'] as String? ?? '',
+      context: json['@context'] as String? ?? '',
+      date: json['dc:date'] as String? ?? '',
+      title: json['dc:title'] as String? ?? '',
+      sameAs: json['owl:sameAs'] as String? ?? '',
+      operatorTitle: OperatorTitle.fromJson(
+        json['odpt:operatorTitle'] as Map<String, dynamic>? ?? {},
+      ),
     );
   }
 }
@@ -37,6 +39,9 @@ class OperatorTitle {
   OperatorTitle({required this.en, required this.ja});
 
   factory OperatorTitle.fromJson(Map<String, dynamic> json) {
-    return OperatorTitle(en: json['en'] as String, ja: json['ja'] as String);
+    return OperatorTitle(
+      en: json['en'] as String? ?? '',
+      ja: json['ja'] as String? ?? '',
+    );
   }
 }

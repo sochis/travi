@@ -29,20 +29,27 @@ class BusstopPoleTimetable {
 
   factory BusstopPoleTimetable.fromJson(Map<String, dynamic> json) {
     return BusstopPoleTimetable(
-      id: json['@id'] as String,
-      type: json['@type'] as String,
-      context: json['@context'] as String,
-      date: json['dc:date'] as String,
-      title: json['dc:title'] as String,
-      sameAs: json['owl:sameAs'] as String,
-      busroute: List<String>.from(json['odpt:busroute']),
-      calendar: json['odpt:calendar'] as String,
-      operatorName: json['odpt:operator'] as String,
-      busstopPole: json['odpt:busstopPole'] as String,
-      busDirection: json['odpt:busDirection'] as String,
+      id: json['@id'] as String? ?? '',
+      type: json['@type'] as String? ?? '',
+      context: json['@context'] as String? ?? '',
+      date: json['dc:date'] as String? ?? '',
+      title: json['dc:title'] as String? ?? '',
+      sameAs: json['owl:sameAs'] as String? ?? '',
+      busroute:
+          (json['odpt:busroute'] as List<dynamic>? ?? [])
+              .map((e) => e as String? ?? '')
+              .toList(),
+      calendar: json['odpt:calendar'] as String? ?? '',
+      operatorName: json['odpt:operator'] as String? ?? '',
+      busstopPole: json['odpt:busstopPole'] as String? ?? '',
+      busDirection: json['odpt:busDirection'] as String? ?? '',
       timetableObjects:
-          (json['odpt:busstopPoleTimetableObject'] as List)
-              .map((e) => BusstopPoleTimetableObject.fromJson(e))
+          (json['odpt:busstopPoleTimetableObject'] as List<dynamic>? ?? [])
+              .map(
+                (e) => BusstopPoleTimetableObject.fromJson(
+                  e as Map<String, dynamic>,
+                ),
+              )
               .toList(),
     );
   }
@@ -67,12 +74,13 @@ class BusstopPoleTimetableObject {
 
   factory BusstopPoleTimetableObject.fromJson(Map<String, dynamic> json) {
     return BusstopPoleTimetableObject(
-      note: json['odpt:note'] as String,
-      isMidnight: json['odpt:isMidnight'] as bool,
-      departureTime: json['odpt:departureTime'] as String,
-      busroutePattern: json['odpt:busroutePattern'] as String,
-      destinationSign: json['odpt:destinationSign'] as String,
-      destinationBusstopPole: json['odpt:destinationBusstopPole'] as String,
+      note: json['odpt:note'] as String? ?? '',
+      isMidnight: json['odpt:isMidnight'] as bool? ?? false,
+      departureTime: json['odpt:departureTime'] as String? ?? '',
+      busroutePattern: json['odpt:busroutePattern'] as String? ?? '',
+      destinationSign: json['odpt:destinationSign'] as String? ?? '',
+      destinationBusstopPole:
+          json['odpt:destinationBusstopPole'] as String? ?? '',
     );
   }
 }

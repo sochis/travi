@@ -23,17 +23,20 @@ class Station {
 
   factory Station.fromJson(Map<String, dynamic> json) {
     return Station(
-      id: json['@id'] as String,
-      type: json['@type'] as String,
-      context: json['@context'] as String,
-      date: json['dc:date'] as String,
-      title: json['dc:title'] as String,
-      sameAs: json['owl:sameAs'] as String,
-      railway: json['odpt:railway'] as String,
-      operatorName: json['odpt:operator'] as String,
-      stationTitle: StationTitle.fromJson(
-        json['odpt:stationTitle'] as Map<String, dynamic>,
-      ),
+      id: json['@id'] as String? ?? '',
+      type: json['@type'] as String? ?? '',
+      context: json['@context'] as String? ?? '',
+      date: json['dc:date'] as String? ?? '',
+      title: json['dc:title'] as String? ?? '',
+      sameAs: json['owl:sameAs'] as String? ?? '',
+      railway: json['odpt:railway'] as String? ?? '',
+      operatorName: json['odpt:operator'] as String? ?? '',
+      stationTitle:
+          json['odpt:stationTitle'] != null
+              ? StationTitle.fromJson(
+                json['odpt:stationTitle'] as Map<String, dynamic>,
+              )
+              : StationTitle(en: '', ja: ''),
     );
   }
 }
@@ -45,6 +48,9 @@ class StationTitle {
   StationTitle({required this.en, required this.ja});
 
   factory StationTitle.fromJson(Map<String, dynamic> json) {
-    return StationTitle(en: json['en'] as String, ja: json['ja'] as String);
+    return StationTitle(
+      en: json['en'] as String? ?? '',
+      ja: json['ja'] as String? ?? '',
+    );
   }
 }

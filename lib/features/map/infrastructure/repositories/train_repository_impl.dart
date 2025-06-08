@@ -1,9 +1,9 @@
 import 'package:flutter_base/core/base/api_client_factory.dart';
 import 'package:flutter_base/core/network/api_result.dart';
-import 'package:flutter_base/features/map/domain/repositories/train/RailwayFare.dart';
 import 'package:flutter_base/features/map/domain/repositories/train/passenger_survey.dart';
 import 'package:flutter_base/features/map/domain/repositories/train/rail_direction.dart';
 import 'package:flutter_base/features/map/domain/repositories/train/railway.dart';
+import 'package:flutter_base/features/map/domain/repositories/train/railway_fare.dart';
 import 'package:flutter_base/features/map/domain/repositories/train/station.dart';
 import 'package:flutter_base/features/map/domain/repositories/train/station_timetatble.dart';
 import 'package:flutter_base/features/map/domain/repositories/train/train.dart';

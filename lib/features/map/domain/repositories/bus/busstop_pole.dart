@@ -33,23 +33,27 @@ class BusstopPole {
 
   factory BusstopPole.fromJson(Map<String, dynamic> json) {
     return BusstopPole(
-      id: json['@id'] as String,
-      type: json['@type'] as String,
-      context: json['@context'] as String,
-      date: json['dc:date'] as String,
-      title: json['dc:title'] as String,
-      lat: json['geo:lat'] != null ? (json['geo:lat'] as num).toDouble() : null,
-      long:
-          json['geo:long'] != null
-              ? (json['geo:long'] as num).toDouble()
-              : null,
-      kana: json['odpt:kana'] as String,
+      id: json['@id'] as String? ?? '',
+      type: json['@type'] as String? ?? '',
+      context: json['@context'] as String? ?? '',
+      date: json['dc:date'] as String? ?? '',
+      title: json['dc:title'] as String? ?? '',
+      lat: (json['geo:lat'] as num?)?.toDouble(),
+      long: (json['geo:long'] as num?)?.toDouble(),
+      kana: json['odpt:kana'] as String? ?? '',
       region: json['ug:region'] as String?,
-      sameAs: json['owl:sameAs'] as String,
-      operator: List<String>.from(json['odpt:operator']),
-      busroutePattern: List<String>.from(json['odpt:busroutePattern']),
-      busstopPoleNumber: json['odpt:busstopPoleNumber'] as String,
-      busstopPoleTimetable: json['odpt:busstopPoleTimetable'] as List<dynamic>,
+      sameAs: json['owl:sameAs'] as String? ?? '',
+      operator:
+          (json['odpt:operator'] as List<dynamic>? ?? [])
+              .map((e) => e as String? ?? '')
+              .toList(),
+      busroutePattern:
+          (json['odpt:busroutePattern'] as List<dynamic>? ?? [])
+              .map((e) => e as String? ?? '')
+              .toList(),
+      busstopPoleNumber: json['odpt:busstopPoleNumber'] as String? ?? '',
+      busstopPoleTimetable:
+          json['odpt:busstopPoleTimetable'] as List<dynamic>? ?? [],
     );
   }
 }

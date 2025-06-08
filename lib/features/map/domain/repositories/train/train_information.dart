@@ -24,19 +24,32 @@ class TrainInformation {
   });
 
   factory TrainInformation.fromJson(Map<String, dynamic> json) {
+    DateTime parsedTime;
+    try {
+      final timeStr = json['odpt:timeOfOrigin'] as String?;
+      parsedTime =
+          (timeStr != null && timeStr.isNotEmpty)
+              ? DateTime.parse(timeStr)
+              : DateTime.fromMillisecondsSinceEpoch(0);
+    } catch (_) {
+      parsedTime = DateTime.fromMillisecondsSinceEpoch(0);
+    }
+
     return TrainInformation(
-      id: json['@id'] as String,
-      type: json['@type'] as String,
-      context: json['@context'] as String,
-      date: json['dc:date'] as String,
-      valid: json['dct:valid'] as String,
-      sameAs: json['owl:sameAs'] as String,
-      railway: json['odpt:railway'] as String,
-      operatorName: json['odpt:operator'] as String,
-      timeOfOrigin: DateTime.parse(json['odpt:timeOfOrigin'] as String),
-      trainInformationText: Map<String, String>.from(
-        json['odpt:trainInformationText'],
-      ),
+      id: json['@id'] as String? ?? '',
+      type: json['@type'] as String? ?? '',
+      context: json['@context'] as String? ?? '',
+      date: json['dc:date'] as String? ?? '',
+      valid: json['dct:valid'] as String? ?? '',
+      sameAs: json['owl:sameAs'] as String? ?? '',
+      railway: json['odpt:railway'] as String? ?? '',
+      operatorName: json['odpt:operator'] as String? ?? '',
+      timeOfOrigin: parsedTime,
+      trainInformationText:
+          (json['odpt:trainInformationText'] != null &&
+                  json['odpt:trainInformationText'] is Map)
+              ? Map<String, String>.from(json['odpt:trainInformationText'])
+              : <String, String>{},
     );
   }
 }

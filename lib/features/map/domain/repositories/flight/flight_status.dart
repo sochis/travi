@@ -6,8 +6,8 @@ class FlightStatusTitle {
 
   factory FlightStatusTitle.fromJson(Map<String, dynamic> json) {
     return FlightStatusTitle(
-      en: json['en'] as String,
-      ja: json['ja'] as String,
+      en: json['en'] as String? ?? '',
+      ja: json['ja'] as String? ?? '',
     );
   }
 }
@@ -33,14 +33,14 @@ class FlightStatus {
 
   factory FlightStatus.fromJson(Map<String, dynamic> json) {
     return FlightStatus(
-      id: json['@id'] as String,
-      type: json['@type'] as String,
-      context: json['@context'] as String,
-      date: json['dc:date'] as String,
-      title: json['dc:title'] as String,
-      sameAs: json['owl:sameAs'] as String,
+      id: json['@id'] as String? ?? '',
+      type: json['@type'] as String? ?? '',
+      context: json['@context'] as String? ?? '',
+      date: json['dc:date'] as String? ?? '',
+      title: json['dc:title'] as String? ?? '',
+      sameAs: json['owl:sameAs'] as String? ?? '',
       flightStatusTitle: FlightStatusTitle.fromJson(
-        json['odpt:flightStatusTitle'] as Map<String, dynamic>,
+        (json['odpt:flightStatusTitle'] as Map<String, dynamic>? ?? {}),
       ),
     );
   }

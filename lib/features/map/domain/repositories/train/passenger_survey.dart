@@ -25,19 +25,28 @@ class PassengerSurvey {
 
   factory PassengerSurvey.fromJson(Map<String, dynamic> json) {
     return PassengerSurvey(
-      id: json['@id'] as String,
-      type: json['@type'] as String,
-      context: json['@context'] as String,
-      date: json['dc:date'] as String,
-      sameAs: json['owl:sameAs'] as String,
-      railway: List<String>.from(json['odpt:railway']),
-      station: List<String>.from(json['odpt:station']),
-      operatorName: json['odpt:operator'] as String,
-      includeAlighting: json['odpt:includeAlighting'] as bool,
+      id: json['@id'] as String? ?? '',
+      type: json['@type'] as String? ?? '',
+      context: json['@context'] as String? ?? '',
+      date: json['dc:date'] as String? ?? '',
+      sameAs: json['owl:sameAs'] as String? ?? '',
+      railway:
+          (json['odpt:railway'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          [],
+      station:
+          (json['odpt:station'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          [],
+      operatorName: json['odpt:operator'] as String? ?? '',
+      includeAlighting: json['odpt:includeAlighting'] as bool? ?? false,
       passengerSurveyObject:
-          (json['odpt:passengerSurveyObject'] as List)
-              .map((e) => PassengerSurveyObject.fromJson(e))
-              .toList(),
+          (json['odpt:passengerSurveyObject'] as List<dynamic>?)
+              ?.map((e) => PassengerSurveyObject.fromJson(e))
+              .toList() ??
+          [],
     );
   }
 }
@@ -53,8 +62,8 @@ class PassengerSurveyObject {
 
   factory PassengerSurveyObject.fromJson(Map<String, dynamic> json) {
     return PassengerSurveyObject(
-      surveyYear: json['odpt:surveyYear'] as int,
-      passengerJourneys: json['odpt:passengerJourneys'] as int,
+      surveyYear: json['odpt:surveyYear'] as int? ?? 0,
+      passengerJourneys: json['odpt:passengerJourneys'] as int? ?? 0,
     );
   }
 }

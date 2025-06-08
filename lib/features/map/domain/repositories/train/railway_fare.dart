@@ -31,19 +31,19 @@ class RailwayFare {
 
   factory RailwayFare.fromJson(Map<String, dynamic> json) {
     return RailwayFare(
-      id: json['@id'] as String,
-      type: json['@type'] as String,
-      context: json['@context'] as String,
-      date: json['dc:date'] as String,
-      issued: json['dct:issued'] as String,
-      sameAs: json['owl:sameAs'] as String,
-      operatorName: json['odpt:operator'] as String,
-      toStation: json['odpt:toStation'] as String,
-      icCardFare: json['odpt:icCardFare'] as int,
-      ticketFare: json['odpt:ticketFare'] as int,
-      fromStation: json['odpt:fromStation'] as String,
-      childIcCardFare: json['odpt:childIcCardFare'] as int,
-      childTicketFare: json['odpt:childTicketFare'] as int,
+      id: json['@id'] as String? ?? '',
+      type: json['@type'] as String? ?? '',
+      context: json['@context'] as String? ?? '',
+      date: json['dc:date'] as String? ?? '',
+      issued: json['dct:issued'] as String? ?? '',
+      sameAs: json['owl:sameAs'] as String? ?? '',
+      operatorName: json['odpt:operator'] as String? ?? '',
+      toStation: json['odpt:toStation'] as String? ?? '',
+      icCardFare: json['odpt:icCardFare'] as int? ?? 0,
+      ticketFare: json['odpt:ticketFare'] as int? ?? 0,
+      fromStation: json['odpt:fromStation'] as String? ?? '',
+      childIcCardFare: json['odpt:childIcCardFare'] as int? ?? 0,
+      childTicketFare: json['odpt:childTicketFare'] as int? ?? 0,
     );
   }
 }

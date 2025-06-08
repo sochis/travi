@@ -31,21 +31,24 @@ class BusroutePattern {
 
   factory BusroutePattern.fromJson(Map<String, dynamic> json) {
     return BusroutePattern(
-      id: json['@id'] as String,
-      type: json['@type'] as String,
-      context: json['@context'] as String,
-      date: json['dc:date'] as String,
-      title: json['dc:title'] as String,
-      note: json['odpt:note'] as String,
-      sameAs: json['owl:sameAs'] as String,
-      pattern: json['odpt:pattern'] as String,
-      busroute: json['odpt:busroute'] as String,
-      operator: json['odpt:operator'] as String,
+      id: json['@id'] as String? ?? '',
+      type: json['@type'] as String? ?? '',
+      context: json['@context'] as String? ?? '',
+      date: json['dc:date'] as String? ?? '',
+      title: json['dc:title'] as String? ?? '',
+      note: json['odpt:note'] as String? ?? '',
+      sameAs: json['owl:sameAs'] as String? ?? '',
+      pattern: json['odpt:pattern'] as String? ?? '',
+      busroute: json['odpt:busroute'] as String? ?? '',
+      operator: json['odpt:operator'] as String? ?? '',
       direction: json['odpt:direction'] as String?,
-      region: Region.fromJson(json['ug:region']),
+      region: Region.fromJson(json['ug:region'] ?? {}),
       busstopPoleOrder:
-          (json['odpt:busstopPoleOrder'] as List)
-              .map((item) => BusstopPoleOrder.fromJson(item))
+          (json['odpt:busstopPoleOrder'] as List<dynamic>? ?? [])
+              .map(
+                (item) =>
+                    BusstopPoleOrder.fromJson(item as Map<String, dynamic>),
+              )
               .toList(),
     );
   }
@@ -59,10 +62,15 @@ class Region {
 
   factory Region.fromJson(Map<String, dynamic> json) {
     return Region(
-      type: json['type'] as String,
+      type: json['type'] as String? ?? '',
       coordinates:
-          (json['coordinates'] as List)
-              .map((coord) => (coord as List).map((e) => e as double).toList())
+          (json['coordinates'] as List<dynamic>? ?? [])
+              .map(
+                (coord) =>
+                    (coord as List<dynamic>)
+                        .map((e) => (e as num).toDouble())
+                        .toList(),
+              )
               .toList(),
     );
   }
@@ -81,9 +89,9 @@ class BusstopPoleOrder {
 
   factory BusstopPoleOrder.fromJson(Map<String, dynamic> json) {
     return BusstopPoleOrder(
-      note: json['odpt:note'] as String,
-      index: json['odpt:index'] as int,
-      busstopPole: json['odpt:busstopPole'] as String,
+      note: json['odpt:note'] as String? ?? '',
+      index: json['odpt:index'] as int? ?? 0,
+      busstopPole: json['odpt:busstopPole'] as String? ?? '',
     );
   }
 }

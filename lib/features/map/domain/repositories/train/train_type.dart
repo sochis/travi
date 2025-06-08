@@ -21,14 +21,18 @@ class TrainType {
 
   factory TrainType.fromJson(Map<String, dynamic> json) {
     return TrainType(
-      id: json['@id'] as String,
-      type: json['@type'] as String,
-      context: json['@context'] as String,
-      date: json['dc:date'] as String,
-      title: json['dc:title'] as String,
-      sameAs: json['owl:sameAs'] as String,
-      operatorName: json['odpt:operator'] as String,
-      trainTypeTitle: Map<String, String>.from(json['odpt:trainTypeTitle']),
+      id: json['@id'] as String? ?? '',
+      type: json['@type'] as String? ?? '',
+      context: json['@context'] as String? ?? '',
+      date: json['dc:date'] as String? ?? '',
+      title: json['dc:title'] as String? ?? '',
+      sameAs: json['owl:sameAs'] as String? ?? '',
+      operatorName: json['odpt:operator'] as String? ?? '',
+      trainTypeTitle:
+          (json['odpt:trainTypeTitle'] != null &&
+                  json['odpt:trainTypeTitle'] is Map)
+              ? Map<String, String>.from(json['odpt:trainTypeTitle'])
+              : <String, String>{},
     );
   }
 }

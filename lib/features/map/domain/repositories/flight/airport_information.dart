@@ -19,13 +19,16 @@ class AirportInformation {
 
   factory AirportInformation.fromJson(Map<String, dynamic> json) {
     return AirportInformation(
-      id: json['@id'] as String,
-      type: json['@type'] as String,
-      context: json['@context'] as String,
-      date: json['dc:date'] as String,
-      title: json['dc:title'] as String,
-      sameAs: json['owl:sameAs'] as String,
-      airportTitle: Map<String, String>.from(json['odpt:airportTitle'] as Map),
+      id: json['@id'] as String? ?? '',
+      type: json['@type'] as String? ?? '',
+      context: json['@context'] as String? ?? '',
+      date: json['dc:date'] as String? ?? '',
+      title: json['dc:title'] as String? ?? '',
+      sameAs: json['owl:sameAs'] as String? ?? '',
+      airportTitle:
+          (json['odpt:airportTitle'] as Map?) != null
+              ? Map<String, String>.from(json['odpt:airportTitle'] as Map)
+              : {},
     );
   }
 }
