@@ -1,40 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_base/features/map/domain/repositories/flight/flight_arrival_information.dart';
-import 'package:flutter_base/features/map/presentation/providers/flight_provider.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart';
 
-class MapPage extends ConsumerWidget {
-  const MapPage({super.key});
+class MapPage extends StatefulWidget {
+  @override
+  _MapPageState createState() => _MapPageState();
+}
+
+class _MapPageState extends State<MapPage> {
+  CameraOptions camera = CameraOptions(
+    center: Point(coordinates: Position(-98.0, 39.5)),
+    zoom: 2,
+    bearing: 0,
+    pitch: 0,
+  );
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(flightArrivalProvider);
-    final notifier = ref.read(flightArrivalProvider.notifier);
-    final List<FlightArrivalInformation> flights = state.data ?? [];
-
+  Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Flight Arrivals')),
-      body:
-          state.isLoading
-              ? const Center(child: CircularProgressIndicator())
-              : state.error != null
-              ? Center(child: Text('Error: ${state.error}'))
-              : ListView.builder(
-                itemCount: flights.length,
-                itemBuilder: (context, index) {
-                  final flight = flights[index];
-                  return ListTile(
-                    title: Text(flight.flightNumber[0]),
-                    subtitle: Text(
-                      'From ${flight.originAirport} at ${flight.actualArrivalTime}',
-                    ),
-                  );
-                },
-              ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: notifier.fetch,
-        child: const Icon(Icons.refresh),
-      ),
+      appBar: AppBar(title: Text('グルメマップ')),
+      body: MapWidget(cameraOptions: camera),
     );
   }
 }
