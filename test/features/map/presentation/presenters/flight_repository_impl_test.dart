@@ -1,8 +1,8 @@
-import 'package:flutter_base/core/exceptions/network_exception.dart';
-import 'package:flutter_base/core/network/api_result.dart';
-import 'package:flutter_base/features/map/domain/repositories/flight/airport_information.dart';
-import 'package:flutter_base/features/map/presentation/presenters/flight_presenter.dart';
-import 'package:flutter_base/features/map/presentation/providers/flight_provider.dart';
+import 'package:travi/core/exceptions/network_exception.dart';
+import 'package:travi/core/network/api_result.dart';
+import 'package:travi/features/map/domain/repositories/flight/airport_information.dart';
+import 'package:travi/features/map/presentation/presenters/flight_presenter.dart';
+import 'package:travi/features/map/presentation/providers/flight_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';

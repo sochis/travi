@@ -1,6 +1,6 @@
-import 'package:flutter_base/core/network/api_client.dart';
-import 'package:flutter_base/core/network/api_result.dart';
-import 'package:flutter_base/core/utils/load_config.dart';
+import 'package:travi/core/network/api_client.dart';
+import 'package:travi/core/network/api_result.dart';
+import 'package:travi/core/utils/load_config.dart';
 
 /// Abstract base class for ODPT repositories.
 /// Provides a common method to perform GET requests to the ODPT API.

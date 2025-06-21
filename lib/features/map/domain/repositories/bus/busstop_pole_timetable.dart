@@ -35,10 +35,9 @@ class BusstopPoleTimetable {
       date: json['dc:date'] as String? ?? '',
       title: json['dc:title'] as String? ?? '',
       sameAs: json['owl:sameAs'] as String? ?? '',
-      busroute:
-          (json['odpt:busroute'] as List<dynamic>? ?? [])
-              .map((e) => e as String? ?? '')
-              .toList(),
+      busroute: (json['odpt:busroute'] as List<dynamic>? ?? [])
+          .map((e) => e as String? ?? '')
+          .toList(),
       calendar: json['odpt:calendar'] as String? ?? '',
       operatorName: json['odpt:operator'] as String? ?? '',
       busstopPole: json['odpt:busstopPole'] as String? ?? '',

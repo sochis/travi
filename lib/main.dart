@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_base/app/app.dart';
-import 'package:flutter_base/core/utils/load_config.dart';
+import 'package:travi/app/app.dart';
+import 'package:travi/core/utils/load_config.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart';
 

@@ -42,10 +42,9 @@ class Railway {
       sameAs: json['owl:sameAs'] as String? ?? '',
       lineCode: json['odpt:lineCode'] as String? ?? '',
       operatorName: json['odpt:operator'] as String? ?? '',
-      railwayTitle:
-          (json['odpt:railwayTitle'] is Map)
-              ? Map<String, String>.from(json['odpt:railwayTitle'] as Map)
-              : {},
+      railwayTitle: (json['odpt:railwayTitle'] is Map)
+          ? Map<String, String>.from(json['odpt:railwayTitle'] as Map)
+          : {},
       stationOrder: stationOrderList,
     );
   }
@@ -66,10 +65,9 @@ class StationOrder {
     return StationOrder(
       index: json['odpt:index'] as int? ?? 0,
       station: json['odpt:station'] as String? ?? '',
-      stationTitle:
-          (json['odpt:stationTitle'] is Map)
-              ? Map<String, String>.from(json['odpt:stationTitle'] as Map)
-              : {},
+      stationTitle: (json['odpt:stationTitle'] is Map)
+          ? Map<String, String>.from(json['odpt:stationTitle'] as Map)
+          : {},
     );
   }
 }

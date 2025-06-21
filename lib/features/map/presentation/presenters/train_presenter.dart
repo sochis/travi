@@ -1,15 +1,15 @@
-import 'package:flutter_base/features/map/domain/repositories/train/passenger_survey.dart';
-import 'package:flutter_base/features/map/domain/repositories/train/rail_direction.dart';
-import 'package:flutter_base/features/map/domain/repositories/train/railway.dart';
-import 'package:flutter_base/features/map/domain/repositories/train/railway_fare.dart';
-import 'package:flutter_base/features/map/domain/repositories/train/station.dart';
-import 'package:flutter_base/features/map/domain/repositories/train/station_timetatble.dart';
-import 'package:flutter_base/features/map/domain/repositories/train/train.dart';
-import 'package:flutter_base/features/map/domain/repositories/train/train_information.dart';
-import 'package:flutter_base/features/map/domain/repositories/train/train_timetable.dart';
-import 'package:flutter_base/features/map/domain/repositories/train/train_type.dart';
-import 'package:flutter_base/features/map/infrastructure/repositories/train_repository_impl.dart';
-import 'package:flutter_base/shared/helpers/api_result_notifier.dart';
+import 'package:travi/features/map/domain/repositories/train/passenger_survey.dart';
+import 'package:travi/features/map/domain/repositories/train/rail_direction.dart';
+import 'package:travi/features/map/domain/repositories/train/railway.dart';
+import 'package:travi/features/map/domain/repositories/train/railway_fare.dart';
+import 'package:travi/features/map/domain/repositories/train/station.dart';
+import 'package:travi/features/map/domain/repositories/train/station_timetatble.dart';
+import 'package:travi/features/map/domain/repositories/train/train.dart';
+import 'package:travi/features/map/domain/repositories/train/train_information.dart';
+import 'package:travi/features/map/domain/repositories/train/train_timetable.dart';
+import 'package:travi/features/map/domain/repositories/train/train_type.dart';
+import 'package:travi/features/map/infrastructure/repositories/train_repository_impl.dart';
+import 'package:travi/shared/helpers/api_result_notifier.dart';
 
 class StationNotifier extends ApiResultNotifier<Station> {
   StationNotifier(TrainRepositoryImpl repository)

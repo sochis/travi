@@ -1,4 +1,4 @@
-import 'package:flutter_base/core/network/api_client.dart';
+import 'package:travi/core/network/api_client.dart';
 
 enum ApiType { odpt, myBackend }
 

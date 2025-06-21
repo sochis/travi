@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_base/core/exceptions/network_exception.dart';
+import 'package:travi/core/exceptions/network_exception.dart';
 import 'api_result.dart';
 import 'interceptors/logger_interceptor.dart';
 import 'interceptors/auth_interceptor.dart';
@@ -42,8 +42,9 @@ class ApiClient {
         path,
         queryParameters: queryParameters,
       );
-      final T parsed =
-          parser != null ? parser(response.data) : response.data as T;
+      final T parsed = parser != null
+          ? parser(response.data)
+          : response.data as T;
       return Success<T>(parsed);
     } on DioException catch (e) {
       return Failure<T>(NetworkException.fromDioError(e));
@@ -60,8 +61,9 @@ class ApiClient {
   }) async {
     try {
       final Response<dynamic> response = await _dio.post(path, data: data);
-      final T parsed =
-          parser != null ? parser(response.data) : response.data as T;
+      final T parsed = parser != null
+          ? parser(response.data)
+          : response.data as T;
       return Success<T>(parsed);
     } on DioException catch (e) {
       return Failure<T>(NetworkException.fromDioError(e));
@@ -78,8 +80,9 @@ class ApiClient {
   }) async {
     try {
       final Response<dynamic> response = await _dio.put(path, data: data);
-      final T parsed =
-          parser != null ? parser(response.data) : response.data as T;
+      final T parsed = parser != null
+          ? parser(response.data)
+          : response.data as T;
       return Success<T>(parsed);
     } on DioException catch (e) {
       return Failure<T>(NetworkException.fromDioError(e));
@@ -96,8 +99,9 @@ class ApiClient {
   }) async {
     try {
       final Response<dynamic> response = await _dio.delete(path, data: data);
-      final T parsed =
-          parser != null ? parser(response.data) : response.data as T;
+      final T parsed = parser != null
+          ? parser(response.data)
+          : response.data as T;
       return Success<T>(parsed);
     } on DioException catch (e) {
       return Failure<T>(NetworkException.fromDioError(e));

@@ -1,4 +1,4 @@
-import 'package:flutter_base/shared/extensions/string_extensions.dart';
+import 'package:travi/shared/extensions/string_extensions.dart';
 
 class FormValidators {
   static String? validateEmail(String? value) {

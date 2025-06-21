@@ -1,8 +1,8 @@
-import 'package:flutter_base/core/base/api_client_factory.dart';
-import 'package:flutter_base/core/network/api_result.dart';
-import 'package:flutter_base/features/map/domain/repositories/common/calendar.dart';
-import 'package:flutter_base/features/map/domain/repositories/common/operator.dart';
-import 'package:flutter_base/shared/helpers/common_odpt_repository.dart';
+import 'package:travi/core/base/api_client_factory.dart';
+import 'package:travi/core/network/api_result.dart';
+import 'package:travi/features/map/domain/repositories/common/calendar.dart';
+import 'package:travi/features/map/domain/repositories/common/operator.dart';
+import 'package:travi/shared/helpers/common_odpt_repository.dart';
 
 class CommonRepositoryImpl extends BaseOdptRepository {
   CommonRepositoryImpl(super.client);

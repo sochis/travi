@@ -1,16 +1,16 @@
-import 'package:flutter_base/features/map/domain/repositories/train/passenger_survey.dart';
-import 'package:flutter_base/features/map/domain/repositories/train/rail_direction.dart';
-import 'package:flutter_base/features/map/domain/repositories/train/railway.dart';
-import 'package:flutter_base/features/map/domain/repositories/train/railway_fare.dart';
-import 'package:flutter_base/features/map/domain/repositories/train/station.dart';
-import 'package:flutter_base/features/map/domain/repositories/train/station_timetatble.dart';
-import 'package:flutter_base/features/map/domain/repositories/train/train.dart';
-import 'package:flutter_base/features/map/domain/repositories/train/train_information.dart';
-import 'package:flutter_base/features/map/domain/repositories/train/train_timetable.dart';
-import 'package:flutter_base/features/map/domain/repositories/train/train_type.dart';
-import 'package:flutter_base/features/map/infrastructure/repositories/train_repository_impl.dart';
-import 'package:flutter_base/features/map/presentation/presenters/train_presenter.dart';
-import 'package:flutter_base/shared/helpers/common_notifier.dart';
+import 'package:travi/features/map/domain/repositories/train/passenger_survey.dart';
+import 'package:travi/features/map/domain/repositories/train/rail_direction.dart';
+import 'package:travi/features/map/domain/repositories/train/railway.dart';
+import 'package:travi/features/map/domain/repositories/train/railway_fare.dart';
+import 'package:travi/features/map/domain/repositories/train/station.dart';
+import 'package:travi/features/map/domain/repositories/train/station_timetatble.dart';
+import 'package:travi/features/map/domain/repositories/train/train.dart';
+import 'package:travi/features/map/domain/repositories/train/train_information.dart';
+import 'package:travi/features/map/domain/repositories/train/train_timetable.dart';
+import 'package:travi/features/map/domain/repositories/train/train_type.dart';
+import 'package:travi/features/map/infrastructure/repositories/train_repository_impl.dart';
+import 'package:travi/features/map/presentation/presenters/train_presenter.dart';
+import 'package:travi/shared/helpers/common_notifier.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 /// Provides metadata and details about railway stations, such as name, code, operator, and location.
@@ -22,10 +22,13 @@ final stationProvider =
 
 /// Provides detailed timetable data for each station, including arrival and departure times by train.
 /// Fetches data from the ODPT StationTimetable endpoint.
-final stationTimetableProvider = StateNotifierProvider<
-  StationTimetableNotifier,
-  CommonState<StationTimetable>
->((ref) => StationTimetableNotifier(TrainRepositoryImpl.withOdptDefaults()));
+final stationTimetableProvider =
+    StateNotifierProvider<
+      StationTimetableNotifier,
+      CommonState<StationTimetable>
+    >(
+      (ref) => StationTimetableNotifier(TrainRepositoryImpl.withOdptDefaults()),
+    );
 
 /// Provides real-time train data, such as current position, destination, and train ID.
 /// Retrieves from the ODPT Train endpoint.
@@ -42,10 +45,13 @@ final trainTimetableProvider =
 
 /// Provides operational information about train services including delays, suspensions, and disruptions.
 /// Connects to the ODPT TrainInformation endpoint.
-final trainInformationProvider = StateNotifierProvider<
-  TrainInformationNotifier,
-  CommonState<TrainInformation>
->((ref) => TrainInformationNotifier(TrainRepositoryImpl.withOdptDefaults()));
+final trainInformationProvider =
+    StateNotifierProvider<
+      TrainInformationNotifier,
+      CommonState<TrainInformation>
+    >(
+      (ref) => TrainInformationNotifier(TrainRepositoryImpl.withOdptDefaults()),
+    );
 
 /// Provides metadata for train types, such as Local, Express, Rapid, and Limited Express.
 /// Fetches from the ODPT TrainType endpoint.
@@ -78,7 +84,8 @@ final railwayFareProvider =
 
 /// Provides ridership statistics collected from passenger surveys, typically annual.
 /// Fetches data from the ODPT PassengerSurvey endpoint.
-final passengerSurveyProvider = StateNotifierProvider<
-  PassengerSurveyNotifier,
-  CommonState<PassengerSurvey>
->((ref) => PassengerSurveyNotifier(TrainRepositoryImpl.withOdptDefaults()));
+final passengerSurveyProvider =
+    StateNotifierProvider<
+      PassengerSurveyNotifier,
+      CommonState<PassengerSurvey>
+    >((ref) => PassengerSurveyNotifier(TrainRepositoryImpl.withOdptDefaults()));

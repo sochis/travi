@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_base/features/map/domain/repositories/flight/flight_arrival_information.dart';
-import 'package:flutter_base/features/map/presentation/providers/flight_provider.dart';
+import 'package:travi/features/map/domain/repositories/flight/flight_arrival_information.dart';
+import 'package:travi/features/map/presentation/providers/flight_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class TestPage extends ConsumerWidget {

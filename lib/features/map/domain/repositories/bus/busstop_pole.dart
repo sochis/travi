@@ -43,14 +43,12 @@ class BusstopPole {
       kana: json['odpt:kana'] as String? ?? '',
       region: json['ug:region'] as String?,
       sameAs: json['owl:sameAs'] as String? ?? '',
-      operator:
-          (json['odpt:operator'] as List<dynamic>? ?? [])
-              .map((e) => e as String? ?? '')
-              .toList(),
-      busroutePattern:
-          (json['odpt:busroutePattern'] as List<dynamic>? ?? [])
-              .map((e) => e as String? ?? '')
-              .toList(),
+      operator: (json['odpt:operator'] as List<dynamic>? ?? [])
+          .map((e) => e as String? ?? '')
+          .toList(),
+      busroutePattern: (json['odpt:busroutePattern'] as List<dynamic>? ?? [])
+          .map((e) => e as String? ?? '')
+          .toList(),
       busstopPoleNumber: json['odpt:busstopPoleNumber'] as String? ?? '',
       busstopPoleTimetable:
           json['odpt:busstopPoleTimetable'] as List<dynamic>? ?? [],

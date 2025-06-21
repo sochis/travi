@@ -43,13 +43,11 @@ class BusroutePattern {
       operator: json['odpt:operator'] as String? ?? '',
       direction: json['odpt:direction'] as String?,
       region: Region.fromJson(json['ug:region'] ?? {}),
-      busstopPoleOrder:
-          (json['odpt:busstopPoleOrder'] as List<dynamic>? ?? [])
-              .map(
-                (item) =>
-                    BusstopPoleOrder.fromJson(item as Map<String, dynamic>),
-              )
-              .toList(),
+      busstopPoleOrder: (json['odpt:busstopPoleOrder'] as List<dynamic>? ?? [])
+          .map(
+            (item) => BusstopPoleOrder.fromJson(item as Map<String, dynamic>),
+          )
+          .toList(),
     );
   }
 }
@@ -63,15 +61,13 @@ class Region {
   factory Region.fromJson(Map<String, dynamic> json) {
     return Region(
       type: json['type'] as String? ?? '',
-      coordinates:
-          (json['coordinates'] as List<dynamic>? ?? [])
-              .map(
-                (coord) =>
-                    (coord as List<dynamic>)
-                        .map((e) => (e as num).toDouble())
-                        .toList(),
-              )
-              .toList(),
+      coordinates: (json['coordinates'] as List<dynamic>? ?? [])
+          .map(
+            (coord) => (coord as List<dynamic>)
+                .map((e) => (e as num).toDouble())
+                .toList(),
+          )
+          .toList(),
     );
   }
 }

@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_base/core/utils/logger.dart';
+import 'package:travi/core/utils/logger.dart';
 
 /// An interceptor that logs HTTP requests, responses, and errors.
 ///

@@ -1,12 +1,12 @@
-import 'package:flutter_base/features/map/domain/repositories/flight/airport_information.dart';
-import 'package:flutter_base/features/map/domain/repositories/flight/airport_terminal_information.dart';
-import 'package:flutter_base/features/map/domain/repositories/flight/flight_arrival_information.dart';
-import 'package:flutter_base/features/map/domain/repositories/flight/flight_departure_information.dart';
-import 'package:flutter_base/features/map/domain/repositories/flight/flight_schedule.dart';
-import 'package:flutter_base/features/map/domain/repositories/flight/flight_status.dart';
-import 'package:flutter_base/features/map/infrastructure/repositories/flight_repository_impl.dart';
-import 'package:flutter_base/features/map/presentation/presenters/flight_presenter.dart';
-import 'package:flutter_base/shared/helpers/common_notifier.dart';
+import 'package:travi/features/map/domain/repositories/flight/airport_information.dart';
+import 'package:travi/features/map/domain/repositories/flight/airport_terminal_information.dart';
+import 'package:travi/features/map/domain/repositories/flight/flight_arrival_information.dart';
+import 'package:travi/features/map/domain/repositories/flight/flight_departure_information.dart';
+import 'package:travi/features/map/domain/repositories/flight/flight_schedule.dart';
+import 'package:travi/features/map/domain/repositories/flight/flight_status.dart';
+import 'package:travi/features/map/infrastructure/repositories/flight_repository_impl.dart';
+import 'package:travi/features/map/presentation/presenters/flight_presenter.dart';
+import 'package:travi/shared/helpers/common_notifier.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 /// Provides metadata and basic information about airports.
@@ -20,26 +20,33 @@ final airportProvider =
 /// Provides terminal-specific information within an airport.
 /// Connects to the ODPT AirportTerminal endpoint and includes details such as
 /// terminal names, associated gates, and location hierarchies.
-final airportTerminalProvider = StateNotifierProvider<
-  AirportTerminalNotifier,
-  CommonState<AirportTerminalInformation>
->((ref) => AirportTerminalNotifier(FlightRepositoryImpl.withOdptDefaults()));
+final airportTerminalProvider =
+    StateNotifierProvider<
+      AirportTerminalNotifier,
+      CommonState<AirportTerminalInformation>
+    >(
+      (ref) => AirportTerminalNotifier(FlightRepositoryImpl.withOdptDefaults()),
+    );
 
 /// Provides real-time or scheduled flight arrival information.
 /// Fetches arrival details for flights using the ODPT FlightArrival endpoint,
 /// including airport, airline, flight number, and arrival status.
-final flightArrivalProvider = StateNotifierProvider<
-  FlightArrivalNotifier,
-  CommonState<FlightArrivalInformation>
->((ref) => FlightArrivalNotifier(FlightRepositoryImpl.withOdptDefaults()));
+final flightArrivalProvider =
+    StateNotifierProvider<
+      FlightArrivalNotifier,
+      CommonState<FlightArrivalInformation>
+    >((ref) => FlightArrivalNotifier(FlightRepositoryImpl.withOdptDefaults()));
 
 /// Provides real-time or scheduled flight departure information.
 /// Retrieves departure data from the ODPT FlightDeparture endpoint,
 /// including airline, departure airport, flight number, and status.
-final flightDepartureProvider = StateNotifierProvider<
-  FlightDepartureNotifier,
-  CommonState<FlightDepartureInformation>
->((ref) => FlightDepartureNotifier(FlightRepositoryImpl.withOdptDefaults()));
+final flightDepartureProvider =
+    StateNotifierProvider<
+      FlightDepartureNotifier,
+      CommonState<FlightDepartureInformation>
+    >(
+      (ref) => FlightDepartureNotifier(FlightRepositoryImpl.withOdptDefaults()),
+    );
 
 /// Provides flight schedule data, including planned arrival and departure times.
 /// Pulls structured information from the ODPT FlightSchedule endpoint for

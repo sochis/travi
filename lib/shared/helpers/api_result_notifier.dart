@@ -1,5 +1,5 @@
-import 'package:flutter_base/shared/helpers/common_notifier.dart';
-import 'package:flutter_base/core/network/api_result.dart';
+import 'package:travi/shared/helpers/common_notifier.dart';
+import 'package:travi/core/network/api_result.dart';
 
 typedef FetchFunction<T> = Future<ApiResult<List<T>>> Function();
 

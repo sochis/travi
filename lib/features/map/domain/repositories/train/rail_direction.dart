@@ -28,10 +28,9 @@ class RailDirection {
       title: json['dc:title'] as String? ?? '',
       sameAs: json['owl:sameAs'] as String? ?? '',
       operatorName: json['odpt:operator'] as String? ?? '',
-      railDirectionTitle:
-          (json['odpt:railDirectionTitle'] as Map?) != null
-              ? Map<String, String>.from(json['odpt:railDirectionTitle'] as Map)
-              : {},
+      railDirectionTitle: (json['odpt:railDirectionTitle'] as Map?) != null
+          ? Map<String, String>.from(json['odpt:railDirectionTitle'] as Map)
+          : {},
     );
   }
 }

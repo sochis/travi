@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_base/app/router/app_router.dart';
-import 'package:flutter_base/shared/themes/app_theme.dart';
+import 'package:travi/app/router/app_router.dart';
+import 'package:travi/shared/themes/app_theme.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_base/shared/i18n/l10n/app_localizations.dart';
+import 'package:travi/shared/i18n/l10n/app_localizations.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

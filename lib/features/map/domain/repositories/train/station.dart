@@ -31,12 +31,11 @@ class Station {
       sameAs: json['owl:sameAs'] as String? ?? '',
       railway: json['odpt:railway'] as String? ?? '',
       operatorName: json['odpt:operator'] as String? ?? '',
-      stationTitle:
-          json['odpt:stationTitle'] != null
-              ? StationTitle.fromJson(
-                json['odpt:stationTitle'] as Map<String, dynamic>,
-              )
-              : StationTitle(en: '', ja: ''),
+      stationTitle: json['odpt:stationTitle'] != null
+          ? StationTitle.fromJson(
+              json['odpt:stationTitle'] as Map<String, dynamic>,
+            )
+          : StationTitle(en: '', ja: ''),
     );
   }
 }

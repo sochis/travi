@@ -1,11 +1,11 @@
-import 'package:flutter_base/features/map/infrastructure/repositories/flight_repository_impl.dart';
-import 'package:flutter_base/features/map/domain/repositories/flight/airport_information.dart';
-import 'package:flutter_base/features/map/domain/repositories/flight/airport_terminal_information.dart';
-import 'package:flutter_base/features/map/domain/repositories/flight/flight_arrival_information.dart';
-import 'package:flutter_base/features/map/domain/repositories/flight/flight_departure_information.dart';
-import 'package:flutter_base/features/map/domain/repositories/flight/flight_schedule.dart';
-import 'package:flutter_base/features/map/domain/repositories/flight/flight_status.dart';
-import 'package:flutter_base/shared/helpers/api_result_notifier.dart';
+import 'package:travi/features/map/infrastructure/repositories/flight_repository_impl.dart';
+import 'package:travi/features/map/domain/repositories/flight/airport_information.dart';
+import 'package:travi/features/map/domain/repositories/flight/airport_terminal_information.dart';
+import 'package:travi/features/map/domain/repositories/flight/flight_arrival_information.dart';
+import 'package:travi/features/map/domain/repositories/flight/flight_departure_information.dart';
+import 'package:travi/features/map/domain/repositories/flight/flight_schedule.dart';
+import 'package:travi/features/map/domain/repositories/flight/flight_status.dart';
+import 'package:travi/shared/helpers/api_result_notifier.dart';
 
 class AirportNotifier extends ApiResultNotifier<AirportInformation> {
   AirportNotifier(FlightRepositoryImpl repository)

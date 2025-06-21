@@ -1,16 +1,16 @@
-import 'package:flutter_base/core/base/api_client_factory.dart';
-import 'package:flutter_base/core/network/api_result.dart';
-import 'package:flutter_base/features/map/domain/repositories/train/passenger_survey.dart';
-import 'package:flutter_base/features/map/domain/repositories/train/rail_direction.dart';
-import 'package:flutter_base/features/map/domain/repositories/train/railway.dart';
-import 'package:flutter_base/features/map/domain/repositories/train/railway_fare.dart';
-import 'package:flutter_base/features/map/domain/repositories/train/station.dart';
-import 'package:flutter_base/features/map/domain/repositories/train/station_timetatble.dart';
-import 'package:flutter_base/features/map/domain/repositories/train/train.dart';
-import 'package:flutter_base/features/map/domain/repositories/train/train_information.dart';
-import 'package:flutter_base/features/map/domain/repositories/train/train_timetable.dart';
-import 'package:flutter_base/features/map/domain/repositories/train/train_type.dart';
-import 'package:flutter_base/shared/helpers/common_odpt_repository.dart';
+import 'package:travi/core/base/api_client_factory.dart';
+import 'package:travi/core/network/api_result.dart';
+import 'package:travi/features/map/domain/repositories/train/passenger_survey.dart';
+import 'package:travi/features/map/domain/repositories/train/rail_direction.dart';
+import 'package:travi/features/map/domain/repositories/train/railway.dart';
+import 'package:travi/features/map/domain/repositories/train/railway_fare.dart';
+import 'package:travi/features/map/domain/repositories/train/station.dart';
+import 'package:travi/features/map/domain/repositories/train/station_timetatble.dart';
+import 'package:travi/features/map/domain/repositories/train/train.dart';
+import 'package:travi/features/map/domain/repositories/train/train_information.dart';
+import 'package:travi/features/map/domain/repositories/train/train_timetable.dart';
+import 'package:travi/features/map/domain/repositories/train/train_type.dart';
+import 'package:travi/shared/helpers/common_odpt_repository.dart';
 
 class TrainRepositoryImpl extends BaseOdptRepository {
   TrainRepositoryImpl(super.client);

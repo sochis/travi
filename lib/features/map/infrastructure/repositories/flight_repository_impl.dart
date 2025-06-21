@@ -1,12 +1,12 @@
-import 'package:flutter_base/core/base/api_client_factory.dart';
-import 'package:flutter_base/core/network/api_result.dart';
-import 'package:flutter_base/features/map/domain/repositories/flight/airport_information.dart';
-import 'package:flutter_base/features/map/domain/repositories/flight/airport_terminal_information.dart';
-import 'package:flutter_base/features/map/domain/repositories/flight/flight_arrival_information.dart';
-import 'package:flutter_base/features/map/domain/repositories/flight/flight_departure_information.dart';
-import 'package:flutter_base/features/map/domain/repositories/flight/flight_schedule.dart';
-import 'package:flutter_base/features/map/domain/repositories/flight/flight_status.dart';
-import 'package:flutter_base/shared/helpers/common_odpt_repository.dart';
+import 'package:travi/core/base/api_client_factory.dart';
+import 'package:travi/core/network/api_result.dart';
+import 'package:travi/features/map/domain/repositories/flight/airport_information.dart';
+import 'package:travi/features/map/domain/repositories/flight/airport_terminal_information.dart';
+import 'package:travi/features/map/domain/repositories/flight/flight_arrival_information.dart';
+import 'package:travi/features/map/domain/repositories/flight/flight_departure_information.dart';
+import 'package:travi/features/map/domain/repositories/flight/flight_schedule.dart';
+import 'package:travi/features/map/domain/repositories/flight/flight_status.dart';
+import 'package:travi/shared/helpers/common_odpt_repository.dart';
 
 class FlightRepositoryImpl extends BaseOdptRepository {
   FlightRepositoryImpl(super.client);

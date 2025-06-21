@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_base/features/auth/presentation/controllers/sign_in_controller.dart';
-import 'package:flutter_base/features/auth/presentation/states/sign_in_state.dart';
-import 'package:flutter_base/features/auth/presentation/providers/sign_in_provider.dart';
-import 'package:flutter_base/features/auth/presentation/widgets/auth_logo.dart';
-import 'package:flutter_base/shared/i18n/l10n/app_localizations.dart';
-import 'package:flutter_base/shared/widgets/primary_button.dart';
+import 'package:travi/features/auth/presentation/controllers/sign_in_controller.dart';
+import 'package:travi/features/auth/presentation/states/sign_in_state.dart';
+import 'package:travi/features/auth/presentation/providers/sign_in_provider.dart';
+import 'package:travi/features/auth/presentation/widgets/auth_logo.dart';
+import 'package:travi/shared/i18n/l10n/app_localizations.dart';
+import 'package:travi/shared/widgets/primary_button.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../presenters/sign_in_presenter.dart';
 

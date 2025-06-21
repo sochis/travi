@@ -27,10 +27,9 @@ class TrainInformation {
     DateTime parsedTime;
     try {
       final timeStr = json['odpt:timeOfOrigin'] as String?;
-      parsedTime =
-          (timeStr != null && timeStr.isNotEmpty)
-              ? DateTime.parse(timeStr)
-              : DateTime.fromMillisecondsSinceEpoch(0);
+      parsedTime = (timeStr != null && timeStr.isNotEmpty)
+          ? DateTime.parse(timeStr)
+          : DateTime.fromMillisecondsSinceEpoch(0);
     } catch (_) {
       parsedTime = DateTime.fromMillisecondsSinceEpoch(0);
     }
@@ -47,9 +46,9 @@ class TrainInformation {
       timeOfOrigin: parsedTime,
       trainInformationText:
           (json['odpt:trainInformationText'] != null &&
-                  json['odpt:trainInformationText'] is Map)
-              ? Map<String, String>.from(json['odpt:trainInformationText'])
-              : <String, String>{},
+              json['odpt:trainInformationText'] is Map)
+          ? Map<String, String>.from(json['odpt:trainInformationText'])
+          : <String, String>{},
     );
   }
 }

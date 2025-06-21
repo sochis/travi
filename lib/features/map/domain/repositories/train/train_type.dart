@@ -30,9 +30,9 @@ class TrainType {
       operatorName: json['odpt:operator'] as String? ?? '',
       trainTypeTitle:
           (json['odpt:trainTypeTitle'] != null &&
-                  json['odpt:trainTypeTitle'] is Map)
-              ? Map<String, String>.from(json['odpt:trainTypeTitle'])
-              : <String, String>{},
+              json['odpt:trainTypeTitle'] is Map)
+          ? Map<String, String>.from(json['odpt:trainTypeTitle'])
+          : <String, String>{},
     );
   }
 }

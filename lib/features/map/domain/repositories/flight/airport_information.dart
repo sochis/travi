@@ -25,10 +25,9 @@ class AirportInformation {
       date: json['dc:date'] as String? ?? '',
       title: json['dc:title'] as String? ?? '',
       sameAs: json['owl:sameAs'] as String? ?? '',
-      airportTitle:
-          (json['odpt:airportTitle'] as Map?) != null
-              ? Map<String, String>.from(json['odpt:airportTitle'] as Map)
-              : {},
+      airportTitle: (json['odpt:airportTitle'] as Map?) != null
+          ? Map<String, String>.from(json['odpt:airportTitle'] as Map)
+          : {},
     );
   }
 }
