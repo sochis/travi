@@ -1,4 +1,4 @@
-class BusroutePattern {
+class BusroutePatternFare {
   final String id;
   final String type;
   final String context;
@@ -13,7 +13,7 @@ class BusroutePattern {
   final Region region;
   final List<BusstopPoleOrder> busstopPoleOrder;
 
-  const BusroutePattern({
+  const BusroutePatternFare({
     required this.id,
     required this.type,
     required this.context,
@@ -29,8 +29,8 @@ class BusroutePattern {
     required this.busstopPoleOrder,
   });
 
-  factory BusroutePattern.fromJson(Map<String, dynamic> json) {
-    return BusroutePattern(
+  factory BusroutePatternFare.fromJson(Map<String, dynamic> json) {
+    return BusroutePatternFare(
       id: json['@id'] as String? ?? '',
       type: json['@type'] as String? ?? '',
       context: json['@context'] as String? ?? '',

@@ -3,6 +3,7 @@ import 'package:travi/core/network/api_result.dart';
 import 'package:travi/features/map/domain/repositories/bus/bus_information.dart';
 import 'package:travi/features/map/domain/repositories/bus/bus_routepattern.dart';
 import 'package:travi/features/map/domain/repositories/bus/bus_timetable.dart';
+import 'package:travi/features/map/domain/repositories/bus/busroute_pattern_fare.dart';
 import 'package:travi/features/map/domain/repositories/bus/busstop_pole.dart';
 import 'package:travi/features/map/domain/repositories/bus/busstop_pole_timetable.dart';
 import 'package:travi/shared/helpers/common_odpt_repository.dart';
@@ -24,8 +25,8 @@ class BusRepositoryImpl extends BaseOdptRepository {
   Future<ApiResult<List<BusroutePattern>>> fetchBusroutePattern() =>
       fetchList('odpt:BusroutePattern', BusroutePattern.fromJson);
 
-  Future<ApiResult<List<BusroutePattern>>> fetchBusroutePatternFare() =>
-      fetchList('odpt:BusroutePatternFare', BusroutePattern.fromJson);
+  Future<ApiResult<List<BusroutePatternFare>>> fetchBusroutePatternFare() =>
+      fetchList('odpt:BusroutePatternFare', BusroutePatternFare.fromJson);
 
   Future<ApiResult<List<BusstopPole>>> fetchBusstopPole() =>
       fetchList('odpt:BusstopPole', BusstopPole.fromJson);

@@ -1,6 +1,7 @@
 import 'package:travi/features/map/domain/repositories/bus/bus_information.dart';
 import 'package:travi/features/map/domain/repositories/bus/bus_routepattern.dart';
 import 'package:travi/features/map/domain/repositories/bus/bus_timetable.dart';
+import 'package:travi/features/map/domain/repositories/bus/busroute_pattern_fare.dart';
 import 'package:travi/features/map/domain/repositories/bus/busstop_pole.dart';
 import 'package:travi/features/map/domain/repositories/bus/busstop_pole_timetable.dart';
 import 'package:travi/features/map/infrastructure/repositories/bus_repository_impl.dart';
@@ -37,9 +38,12 @@ final busroutePatternProvider =
 /// Fetches ODPT fare information based on route distance, zones, or fare structure.
 final busroutePatternFareProvider =
     StateNotifierProvider<
-      BusroutePatternNotifier,
-      CommonState<BusroutePattern>
-    >((ref) => BusroutePatternNotifier(BusRepositoryImpl.withOdptDefaults()));
+      BusroutePatternFareNotifier,
+      CommonState<BusroutePatternFare>
+    >(
+      (ref) =>
+          BusroutePatternFareNotifier(BusRepositoryImpl.withOdptDefaults()),
+    );
 
 /// Provides metadata about bus stop poles, including location and parent stop.
 /// Retrieves data from the ODPT BusstopPole endpoint, representing individual

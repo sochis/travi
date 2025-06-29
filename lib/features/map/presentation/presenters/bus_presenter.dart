@@ -1,6 +1,7 @@
 import 'package:travi/features/map/domain/repositories/bus/bus_information.dart';
 import 'package:travi/features/map/domain/repositories/bus/bus_routepattern.dart';
 import 'package:travi/features/map/domain/repositories/bus/bus_timetable.dart';
+import 'package:travi/features/map/domain/repositories/bus/busroute_pattern_fare.dart';
 import 'package:travi/features/map/domain/repositories/bus/busstop_pole.dart';
 import 'package:travi/features/map/domain/repositories/bus/busstop_pole_timetable.dart';
 import 'package:travi/features/map/infrastructure/repositories/bus_repository_impl.dart';
@@ -20,7 +21,8 @@ class BusroutePatternNotifier extends ApiResultNotifier<BusroutePattern> {
     : super(repository.fetchBusroutePattern);
 }
 
-class BusroutePatternFareNotifier extends ApiResultNotifier<BusroutePattern> {
+class BusroutePatternFareNotifier
+    extends ApiResultNotifier<BusroutePatternFare> {
   BusroutePatternFareNotifier(BusRepositoryImpl repository)
     : super(repository.fetchBusroutePatternFare);
 }

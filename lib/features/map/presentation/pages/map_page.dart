@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart';
-import 'package:travi/core/utils/location_service.dart';
+import 'package:travi/core/utils/map_utils.dart';
 import 'package:travi/features/map/presentation/providers/location_provider.dart';
 
 class MapPage extends ConsumerStatefulWidget {
@@ -14,46 +14,48 @@ class MapPage extends ConsumerStatefulWidget {
 class _MapPageState extends ConsumerState<MapPage> {
   MapboxMap? _mapboxMap;
 
-  void _moveCameraTo(double latitude, double longitude) {
-    _mapboxMap?.flyTo(
-      CameraOptions(
-        center: Point(coordinates: Position(longitude, latitude)),
-        zoom: 14,
-      ),
-      MapAnimationOptions(duration: 1000),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     final locationAsync = ref.watch(locationProvider);
 
-    // Fallback camera position (e.g., center of Japan)
     final fallbackCamera = CameraOptions(
-      center: Point(coordinates: Position(138.2529, 36.2048)),
+      center: Point(coordinates: Position(138.2529, 36.2048)), // Central Japan
       zoom: 5,
     );
-
     // Move camera if location data is available
     WidgetsBinding.instance.addPostFrameCallback((_) {
       locationAsync.whenOrNull(
-        data: (position) {
-          _moveCameraTo(position.latitude, position.longitude);
+        data: (_) async {
+          await goToCurrentLocation(map: _mapboxMap, durationMs: 0);
         },
       );
     });
 
     return Scaffold(
       body: MapWidget(
+        key: const ValueKey("mapWidget"),
         cameraOptions: fallbackCamera,
-        onMapCreated: (map) => _mapboxMap = map,
+        onMapCreated: (map) async {
+          _mapboxMap = map;
+
+          // Enable location component
+          await _mapboxMap?.location.updateSettings(
+            LocationComponentSettings(
+              enabled: true,
+              puckBearingEnabled: true,
+              pulsingEnabled: true,
+              showAccuracyRing: true,
+              locationPuck: LocationPuck(
+                locationPuck2D: DefaultLocationPuck2D(),
+              ),
+            ),
+          );
+        },
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          final position = await LocationService.getCurrentLocation();
-          _moveCameraTo(position.latitude, position.longitude);
+          await goToCurrentLocation(map: _mapboxMap);
         },
-        tooltip: 'Move to current location',
         child: const Icon(Icons.my_location),
       ),
     );
