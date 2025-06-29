@@ -55,3 +55,46 @@ Future<void> goToCurrentLocation({
     Logger.log('Error getting current location: $e');
   }
 }
+
+/// Adds multiple markers to the map using PointAnnotationManager.
+///
+/// This function takes a list of marker data—each consisting of geometry and an icon image—and
+/// adds them to the provided Mapbox map instance.
+///
+/// Example usage:
+/// ```dart
+/// final markers = [
+///   {
+///     'geometry': Point(coordinates: Position(-122.4194, 37.7749)), // San Francisco
+///     'iconImage': 'marker-15',
+///   },
+///   {
+///     'geometry': Point(coordinates: Position(-74.0060, 40.7128)), // New York
+///     'iconImage': 'marker-15',
+///   },
+/// ];
+///
+/// await addMultipleMarkers(mapboxMap, markers);
+/// ```
+///
+/// Parameters:
+/// - [mapboxMap]: The MapboxMap instance to add the markers to.
+/// - [markerData]: A list of maps, each containing:
+///   - `geometry`: A `Point` representing the location
+///   - `iconImage`: A `String?` representing the marker icon image
+///      - reference: https://labs.mapbox.com/maki-icons/'
+Future<void> addMultipleMarkers(
+  MapboxMap mapboxMap,
+  List<Map<String, dynamic>> markerData,
+) async {
+  final manager = await mapboxMap.annotations.createPointAnnotationManager();
+
+  final options = markerData.map((data) {
+    return PointAnnotationOptions(
+      geometry: data['geometry'] as Point,
+      iconImage: data['iconImage'] as String?,
+    );
+  }).toList();
+
+  await manager.createMulti(options);
+}
