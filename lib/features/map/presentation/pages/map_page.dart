@@ -1,8 +1,8 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart';
 import 'package:travi/core/utils/map_utils.dart';
+import 'package:travi/features/map/controllers/map_controller.dart';
 import 'package:travi/features/map/presentation/providers/location_provider.dart';
 
 class MapPage extends ConsumerStatefulWidget {
@@ -13,27 +13,12 @@ class MapPage extends ConsumerStatefulWidget {
 
 class _MapPageState extends ConsumerState<MapPage> {
   MapboxMap? _mapboxMap;
-  bool _isFollowing = false;
-  Timer? _timer;
+  final _mapFollowController = MapFollowController();
 
   @override
   void dispose() {
-    _timer?.cancel();
+    _mapFollowController.dispose();
     super.dispose();
-  }
-
-  void _startFollowing() {
-    _isFollowing = true;
-    _timer?.cancel();
-    _timer = Timer.periodic(const Duration(seconds: 1), (_) async {
-      if (!_isFollowing) return;
-      await goToCurrentLocation(map: _mapboxMap);
-    });
-  }
-
-  void _stopFollowing() {
-    if (_isFollowing) debugPrint('🛑 User following disabled');
-    _isFollowing = false;
   }
 
   @override
@@ -69,16 +54,16 @@ class _MapPageState extends ConsumerState<MapPage> {
               ),
             ),
           );
+          _mapFollowController.startFollowing(map);
         },
-        // Stop following when user interacts with the map by scrolling or zooming.
-        onScrollListener: (_) => _stopFollowing(),
-        onZoomListener: (_) => _stopFollowing(),
+        onScrollListener: (_) => _mapFollowController.stopFollowing(),
+        onZoomListener: (_) => _mapFollowController.stopFollowing(),
       ),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.my_location),
         onPressed: () async {
           await goToCurrentLocation(map: _mapboxMap);
-          _startFollowing();
+          _mapFollowController.startFollowing(_mapboxMap);
         },
       ),
     );
