@@ -49,7 +49,7 @@ abstract class CommonNotifier<T> extends StateNotifier<CommonState<T>> {
   /// Starts polling at the specified [interval] to continuously fetch data.
   ///
   /// The first fetch is immediate. If already polling, the previous timer is canceled.
-  void startPolling({Duration interval = const Duration(seconds: 10)}) {
+  void startPolling({Duration interval = const Duration(seconds: 5)}) {
     _timer?.cancel(); // Cancel any existing timer
     fetch(); // Fetch immediately before starting the interval
     _timer = Timer.periodic(interval, (_) => fetch());
