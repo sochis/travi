@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart';
@@ -18,14 +20,20 @@ class _MapPageState extends ConsumerState<MapPage> {
   MapboxMap? _mapboxMap;
   final _mapFollowController = MapFollowController();
   PointAnnotationManager? _busMarkerManager;
+  Uint8List? _busImage;
 
   @override
   void initState() {
     super.initState();
 
-    // Start bus location polling
+    // Start bus polling
     Future.microtask(() {
       ref.read(busProvider.notifier).startPolling();
+    });
+
+    // Load bus image once
+    ImageCacheLoader.load('assets/images/bus.png').then((image) {
+      _busImage = image;
     });
   }
 
@@ -44,13 +52,13 @@ class _MapPageState extends ConsumerState<MapPage> {
       zoom: 14,
     );
 
-    // Listen to changes in bus state and update markers
     ref.listen<CommonState<BusInformation>>(busProvider, (prev, next) async {
-      if (_mapboxMap != null) {
+      if (_mapboxMap != null && _busImage != null) {
         _busMarkerManager = await showBusMarkersWithClear(
           mapboxMap: _mapboxMap!,
           busState: next,
           currentManager: _busMarkerManager,
+          image: _busImage!,
         );
       }
     });

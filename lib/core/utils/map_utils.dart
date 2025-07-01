@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart';
 import 'package:travi/core/utils/location_service.dart';
 import 'package:travi/core/utils/logger.dart';
@@ -58,33 +59,69 @@ Future<void> goToCurrentLocation({
   }
 }
 
-/// Adds multiple markers to the map using PointAnnotationManager.
+/// A utility class for loading and caching images from the asset bundle.
 ///
-/// This function takes a list of marker data—each consisting of geometry and an icon image—and
-/// adds them to the provided Mapbox map instance.
+/// This class helps avoid redundant image decoding by caching loaded images
+/// in memory, indexed by their asset path. This is especially useful when
+/// the same image is used multiple times in the UI (e.g., for map markers).
+class ImageCacheLoader {
+  /// Internal cache that maps asset paths to their loaded image data.
+  static final Map<String, Uint8List> _cache = {};
+
+  /// Loads an image from the asset bundle and caches it in memory.
+  ///
+  /// If the image has already been loaded before, the cached version
+  /// is returned immediately without reloading from the asset bundle.
+  ///
+  /// Example:
+  /// ```dart
+  /// final busImage = await ImageCacheLoader.load('assets/images/bus.png');
+  /// ```
+  ///
+  /// [assetPath] - The asset path of the image to load.
+  /// Returns a [Uint8List] representing the image data.
+  static Future<Uint8List> load(String assetPath) async {
+    if (_cache.containsKey(assetPath)) return _cache[assetPath]!;
+
+    final bytes = await rootBundle.load(assetPath);
+    final imageData = bytes.buffer.asUint8List();
+    _cache[assetPath] = imageData;
+    return imageData;
+  }
+
+  /// Clears all cached image data from memory.
+  ///
+  /// This can be useful if you want to manually free up memory
+  /// or reload images with updated content.
+  static void clearCache() {
+    _cache.clear();
+  }
+}
+
+/// Adds multiple custom image markers to a Mapbox map using PointAnnotationManager.
 ///
-/// Example usage:
+/// This function takes a list of marker data where each entry includes a geometry (location)
+/// and an image (as a Uint8List) to be used as the icon for the marker. It then creates
+/// and adds these markers to the provided MapboxMap instance.
+///
+/// Each item in [markerData] should be a map containing:
+/// - `geometry`: a `Point` object representing the geographic location of the marker
+/// - `image`: a `Uint8List` containing the image data to be used as the marker icon
+///
+/// Example:
 /// ```dart
+/// final ByteData imageData = await rootBundle.load('assets/icons/bus.png');
 /// final markers = [
 ///   {
-///     'geometry': Point(coordinates: Position(-122.4194, 37.7749)), // San Francisco
-///     'iconImage': 'marker-15',
-///   },
-///   {
-///     'geometry': Point(coordinates: Position(-74.0060, 40.7128)), // New York
-///     'iconImage': 'marker-15',
+///     'geometry': Point(coordinates: Position(139.7671, 35.6812)),
+///     'image': imageData.buffer.asUint8List(),
 ///   },
 /// ];
-///
 /// await addMultipleMarkers(mapboxMap, markers);
 /// ```
 ///
-/// Parameters:
-/// - [mapboxMap]: The MapboxMap instance to add the markers to.
-/// - [markerData]: A list of maps, each containing:
-///   - `geometry`: A `Point` representing the location
-///   - `iconImage`: A `String?` representing the marker icon image
-///      - reference: https://labs.mapbox.com/maki-icons/'
+/// [mapboxMap] - The MapboxMap instance to which the markers will be added.
+/// [markerData] - A list of maps containing marker geometry and icon image.
 Future<void> addMultipleMarkers(
   MapboxMap mapboxMap,
   List<Map<String, dynamic>> markerData,
@@ -94,7 +131,7 @@ Future<void> addMultipleMarkers(
   final options = markerData.map((data) {
     return PointAnnotationOptions(
       geometry: data['geometry'] as Point,
-      iconImage: data['iconImage'] as String?,
+      image: data['image'] as Uint8List?,
     );
   }).toList();
 
@@ -115,6 +152,7 @@ Future<void> addMultipleMarkers(
 /// - [mapboxMap]: The MapboxMap instance where markers will be displayed.
 /// - [busState]: A CommonState object containing a list of BusInformation.
 /// - [currentManager]: The currently active PointAnnotationManager, if any.
+/// - [image]: The image data (Uint8List) to be used as the marker icon.
 ///
 /// Returns:
 /// - A Future that completes with a PointAnnotationManager instance used to
@@ -123,6 +161,7 @@ Future<PointAnnotationManager?> showBusMarkersWithClear({
   required MapboxMap mapboxMap,
   required CommonState<BusInformation>? busState,
   required PointAnnotationManager? currentManager,
+  required Uint8List image,
 }) async {
   if (busState?.data == null) return currentManager;
 
@@ -138,7 +177,7 @@ Future<PointAnnotationManager?> showBusMarkersWithClear({
   final markerData = busState!.data!.map((bus) {
     return PointAnnotationOptions(
       geometry: Point(coordinates: Position(bus.longitude, bus.latitude)),
-      iconImage: 'bus',
+      image: image,
     );
   }).toList();
 
